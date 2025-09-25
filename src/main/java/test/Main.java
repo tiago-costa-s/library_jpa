@@ -1,5 +1,7 @@
 package test;
 
+import java.util.List;
+
 import entities.Book;
 import entities.User;
 import jakarta.persistence.EntityManager;
@@ -14,29 +16,59 @@ public class Main {
 
 		em.getTransaction().begin();
 
+// Inserir book
+
 //		Book book = new Book();
-//		book.setTitle("O minimo que você precisa para não ser um idiota.");
+//		book.setTitle("Jardim das Aflições.");
 //		book.setAuthor("Olavo de Carvalho");
 //
 //		em.persist(book);
 //		em.getTransaction().commit();
 //
 //		System.err.println("Salvo livro com ID: " + book.getId());
-//		em.close();
 
-		User user = new User();
-		user.setActive(true);
-		user.setName("Tiago Santos");
-		user.setEmail("tiagosantos@gmail.com");
-		user.setPhone("31990908080");
-		user.setAge(33);
+//		Inserir User
 
-		em.persist(user);
+//		User user = new User();
+//		user.setActive(true);
+//		user.setName("Tiago Costa");
+//		user.setEmail("tiago@gmail.com");
+//		user.setPhone("31990908080");
+//		user.setAge(33);
+//
+//		em.persist(user);
+//		em.getTransaction().commit();
+//
+//		System.err.println("Salvo Usuario com ID: " + user.getId());
+
+//		Buscar por um Book
+//		Book b1 = em.find(Book.class, 2L);
+//		System.out.println("Livro encontrado: " + b1);
+////		Buscar por todos os Books
+//
+//		List<Book> books = em.createQuery("SELECT b FROM Book b", Book.class).getResultList();
+//		for (Book book : books) {
+//			System.out.println(book);		}
+//
+
+//		Atualizar dados
+//		Book book = em.find(Book.class, 1L);
+//		book.setTitle("##O minimo que você precisa para não ser um idiota.");
+//
+//		em.getTransaction().commit();
+//
+//		System.out.println("Book atualizado:" + book);
+
+//		Deletar(remover)
+		em.getTransaction().begin();
+		Book book = em.find(Book.class, 1L);
+
+		em.remove(book);
 		em.getTransaction().commit();
-		em.close();
 
-		
+		em.close();
 		emf.close();
+
 	}
 
 }
