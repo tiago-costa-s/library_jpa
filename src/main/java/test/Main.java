@@ -1,8 +1,10 @@
 package test;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import entities.Book;
+import entities.Loan;
 import entities.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -60,10 +62,22 @@ public class Main {
 //		System.out.println("Book atualizado:" + book);
 
 //		Deletar(remover)
-		em.getTransaction().begin();
+//		em.getTransaction().begin();
+//		Book book = em.find(Book.class, 1L);
+//
+//		em.remove(book);
+//		em.getTransaction().commit();
+
+//
+		User user = em.find(User.class, 1L);
 		Book book = em.find(Book.class, 1L);
 
-		em.remove(book);
+		Loan loan = new Loan();
+		loan.setUser(user);
+		loan.setBook(book);
+		loan.setLoanDate(LocalDate.now());
+
+		em.persist(loan);
 		em.getTransaction().commit();
 
 		em.close();
